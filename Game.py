@@ -113,7 +113,7 @@ def does_collide(rect1, rect2):
         return True
     return False
 
-def player_input(keypresses,player1,player2):
+def player_input(keypresses,player1,player2,player_state):
     input = [False, False, False, False]
     if keypresses[K_UP] and player2 == 'human':
         input[0] = True
@@ -125,28 +125,28 @@ def player_input(keypresses,player1,player2):
         input[3] = True
 
     if player1 == 'agent':
-        action = agent1_action()
+        action = agent1_action(player_state)
         if action == 0:
             input[2] = True
         elif action == 2:
             input[3] = True
     if player2 == 'agent':
-        action = agent2_action()
+        action = agent2_action(player_state)
         if action == 0:
             input[0] = True
         elif action == 2:
             input[1] = True
     return input
 
-def agent1_action():
+def agent1_action(state):
     action = random.choice([0,1,2])
     return action
     
-def agent2_action():
+def agent2_action(state):
     action = random.choice([0,1,2])
     return action
 
-def main(player1='human',player2='human',ui = True):
+def main(player1='human',player2='human',ui = True, ignore_time = False):
     if player1 == 'human' or player2 == 'human':
         ui = True
 
@@ -171,11 +171,12 @@ def main(player1='human',player2='human',ui = True):
                     running = False
             elif event.type == QUIT:
                 running = False
-
+        # State of player [location x, location y, speed x, speed y]
+        player_state = [player.rect.x, player.rect.y, player.speed_x, player.speed_y]
         # Player Actions
         if next_action == ACTION_EVERY:
             pressed_keys = pygame.key.get_pressed()
-            player_actions = player_input(pressed_keys,player1,player2)
+            player_actions = player_input(pressed_keys,player1,player2,player_state)
             next_action = 0
             total_actions += 1
         player.update(player_actions)
@@ -203,10 +204,11 @@ def main(player1='human',player2='human',ui = True):
             # Update the display
             pygame.display.flip()
         else:
-            print('Player location: ',player.rect)
+            print('Player state: ', player_state)
 
         # Ensure program maintains a rate of 60 frames per second
-        pygame.time.Clock().tick(FRAMES)
+        if not ignore_time:
+            pygame.time.Clock().tick(FRAMES)
         frame += 1
         if frame == FRAMES_TO_END:
             running = False
@@ -218,8 +220,19 @@ if __name__ == '__main__':
     player1 = sys.argv[1]
     player2 = sys.argv[2]
     if len(sys.argv) > 3:
-        ui = sys.argv[3]
+        if sys.argv[3] == 'False':
+            ui = False
+        else:
+            ui = True
     else:
         ui = True
 
-    main(player1,player2,ui)
+    if len(sys.argv) > 4:
+        if sys.argv[4] == 'False':
+            ignore_time = False
+        else:
+            ignore_time = True
+    else:
+        ignore_time = False
+
+    main(player1,player2,ui,ignore_time)
