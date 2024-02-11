@@ -1,4 +1,4 @@
-# Laser-Dot-Collaborative-Pygame-Environment-
+# Laser Dot Collaborative Pygame Environment
 Laser Dot game is built in Pygame for collaboration games between agents and humans.
 
 ---
