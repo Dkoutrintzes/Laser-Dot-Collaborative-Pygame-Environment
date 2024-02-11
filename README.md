@@ -9,7 +9,7 @@ Laser Dot game is built in Pygame for collaboration games between agents and hum
 * Ignore Time [Ture False]
 Example
 ```
-python game.py human agent True False
+python Game.py human agent True False
 ```
 If any of the two players are human UI will turn on even if the argument is false.
 
