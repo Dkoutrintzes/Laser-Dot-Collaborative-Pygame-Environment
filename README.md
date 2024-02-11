@@ -12,6 +12,7 @@ Example
 python game.py human agent True False
 ```
 If any of the two players are human UI will turn on even if the argument is false.
-If Ignore Time is True pygame makes sure to maintain 60 Frames per second.
 
-For human players the controls are UP and DOWN for player one and LEFT and RIGHT for player 2
+If Ignore Time is False, Pygame maintains 60 Frames per second.
+
+For human players, the controls are UP and DOWN for player one and LEFT and RIGHT for player 2
