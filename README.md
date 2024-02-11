@@ -10,5 +10,6 @@ Example
 ```
 python game.py human agent True
 ```
-if any of the two players are human UI will turn on even if the argument is false
-for human players the controls are UP and DOWN for player one and LEFT and RIGHT for player 2
+if any of the two players are human UI will turn on even if the argument is false.
+
+For human players the controls are UP and DOWN for player one and LEFT and RIGHT for player 2
