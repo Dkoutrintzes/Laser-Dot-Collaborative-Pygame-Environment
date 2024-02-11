@@ -2,7 +2,7 @@
 Laser Dot game is built in Pygame for collaboration games between agents and humans.
 
 ---
-3 arguments
+4 arguments
 * Player1 [human or agent]
 * Player2 [human or agent]
 * UI [True False]
