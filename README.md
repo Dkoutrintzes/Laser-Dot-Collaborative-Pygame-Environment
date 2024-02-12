@@ -11,6 +11,8 @@ Example
 ```
 python Game.py human agent True False
 ```
+Currently the agent is a random agent
+
 If any of the two players are human UI will turn on even if the argument is false.
 
 If Ignore Time is False, Pygame maintains 60 Frames per second.
